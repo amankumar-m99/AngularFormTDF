@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EmployeeRegistrationService {
-  _url = "";
+  _url = "http://localhost:3000/register";
   constructor(private _httpClient:HttpClient) { }
 
   registerEmployee(employee:Employee):Observable<Employee>{
