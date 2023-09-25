@@ -45,7 +45,7 @@
     </div>
     <div class="mb-3 form-check">
       <!-- <input type="checkbox" class="form-check-input" id="docsCheck" name="docsCheck" ngModel /> -->
-      <input type="checkbox" class="form-check-input" id="docsCheck" name="docsCheck" required
+      <input type="checkbox" class="form-check-input" id="docsCheck" name="docsCheck"
         #docsCheck="ngModel" [class.is-invalid]="docsCheck.invalid && docsCheck.touched" [(ngModel)]="employeeModel.docsCheck" />
       <label class="form-check-label" for="docsCheck">Docs Incomplete</label>
       <div id="docsCheckHelp" class="form-text small text-danger" [class.d-none]="docsCheck.valid || docsCheck.untouched">This is required</div>
@@ -80,7 +80,9 @@
     <!-- <button type="submit" class="btn btn-primary" (click)="submit(employeeForm)">Submit</button> -->
     <button type="submit" class="btn btn-primary" [disabled]="employeeForm.form.invalid || profileHasError">Submit</button>
   </form>
-  <div style="border: 1px solid black; padding: 10px;">
+  <hr/>
+  <h2 class="text-center">List of Employees</h2>
+  <div style="border: 1px solid black; padding: 10px; margin:10px;">
     <table  class="table table-success table-striped">
       <thead>
         <tr>
@@ -106,3 +108,20 @@
   </div>
 </div>
 <hr>
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel" [ngClass]="modalTitleStyleClass">{{modalTitle}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{modalBody}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" [ngClass]="modalStyleClass" data-bs-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
