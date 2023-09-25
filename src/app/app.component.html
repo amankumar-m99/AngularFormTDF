@@ -1,6 +1,6 @@
-<h2 class="text-center">Employee Registration Form</h2>
+<h2 class="text-center">Employee Registration Form - Template Driven Form (TDF)</h2>
 <div class="container">
-  <form #employeeForm="ngForm" (ngSubmit)="submit()" novalidate
+  <form #employeeForm="ngForm" (ngSubmit)="submit(employeeForm)" novalidate
     style="border: 1px solid black; padding: 10px 50px; background-color: aliceblue;">
     <div class="container">
       <!-- <hr/>
@@ -32,15 +32,17 @@
         <label class="form-check-label" for="female">Female</label>
       </div>
     </div>
-    <!-- <select class="form-select" aria-label="Default select example" name="profile" ngModel> -->
-    <select class="form-select" aria-label="Default select example" name="profile"
-      #profile="ngModel" [class.is-invalid]="profileHasError && profile.touched" [(ngModel)]="employeeModel.profile"
-      (blur)="validateProfile(profile.value)" (change)="validateProfile(profile.value)" >
-      <option selected>Profile of Employee</option>
-      <option *ngFor = "let profile of employeeProfiles" [value] = "profile">{{profile}}</option>
-    </select>
-    <!-- <div id="profileHelp" class="form-text small text-danger" [class.d-none]="profile.valid || profile.untouched">Please choose the profile of employee</div> -->
-    <div id="profileHelp" class="form-text small text-danger" [class.d-none]="!profileHasError || profile.untouched">Please choose the profile of employee</div>
+    <div class="mb-3">
+      <!-- <select class="form-select" aria-label="Default select example" name="profile" ngModel> -->
+      <select class="form-select" aria-label="Default select example" name="profile"
+        #profile="ngModel" [class.is-invalid]="profileHasError && profile.touched" [(ngModel)]="employeeModel.profile"
+        (blur)="validateProfile(profile.value)" (change)="validateProfile(profile.value)" >
+        <option value = "" disabled>--Profile of Employee--</option>
+        <option *ngFor = "let profile of employeeProfiles" [value] = "profile">{{profile}}</option>
+      </select>
+      <!-- <div id="profileHelp" class="form-text small text-danger" [class.d-none]="profile.valid || profile.untouched">Please choose the profile of employee</div> -->
+      <div id="profileHelp" class="form-text small text-danger" [class.d-none]="!profileHasError || profile.untouched">Please choose the profile of employee</div>
+    </div>
     <div class="mb-3 form-check">
       <!-- <input type="checkbox" class="form-check-input" id="docsCheck" name="docsCheck" ngModel /> -->
       <input type="checkbox" class="form-check-input" id="docsCheck" name="docsCheck" required
@@ -92,11 +94,11 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of formData">
-          <td>{{item.name}}</td>
-          <td>{{item.gender}}</td>
-          <td>{{item.profile}}</td>
+          <td>{{item.name|titlecase}}</td>
+          <td>{{item.gender|titlecase}}</td>
+          <td>{{item.profile|titlecase}}</td>
           <td>{{item.docsCheck}}</td>
-          <td>{{item.address.city}}</td>
+          <td>{{item.address.city|titlecase}}</td>
           <td>{{item.address.pincode}}</td>
         </tr>
       </tbody>

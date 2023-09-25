@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Employee } from './employee';
 import { Address } from './address';
 import { EmployeeRegistrationService } from './employee-registration.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +29,8 @@ export class AppComponent {
     this.profileHasError = !found;
   }
 
-  submit(){
+  submit(employeeForm:NgForm){
+    console.log(employeeForm)
     this.formData.push(this.employeeModel);
     this._employeeRegistrationService.registerEmployee(this.employeeModel)
         .subscribe(
