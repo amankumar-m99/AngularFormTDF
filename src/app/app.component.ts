@@ -12,7 +12,7 @@ import { NgForm } from '@angular/forms';
 export class AppComponent {
   title = 'AngularForms';
   employeeProfiles = ["Developer", "Tester", "Bussiness Analyst", "Manager"];
-  employeeModel = new Employee("","","",false, new Address("", "", ""));
+  employeeModel = new Employee("","","","",false, new Address("", "", ""));
   profileHasError = true;
   formData:any = [];
   modalTitle = "";
@@ -33,7 +33,8 @@ export class AppComponent {
 
   submit(employeeForm:NgForm){
     console.log(employeeForm)
-    this.formData.push(this.employeeModel);
+    // this.formData.push(this.employeeModel);
+    this.formData.push(employeeForm.value);
     this._employeeRegistrationService.registerEmployee(this.employeeModel)
         .subscribe(
           data=>{
@@ -42,9 +43,9 @@ export class AppComponent {
             this.modalBody = "Form submitted successfully."
             this.modalStyleClass="btn-success";
             ($('#staticBackdrop') as any).modal('show');
-            // console.log("Success",data);
-            this.employeeModel=new Employee("","","",false, new Address("", "", ""));
-            employeeForm.reset();
+            console.log("Success",data);
+            // this.employeeModel=new Employee("","","","",false, new Address("", "", ""));
+            // employeeForm.reset();
           },
           error=> {
             this.modalTitle = "Error " + error.status + ": "+ error.statusText;
@@ -52,7 +53,7 @@ export class AppComponent {
             this.modalBody = error.message;
             this.modalStyleClass="btn-danger";
             ($('#staticBackdrop') as any).modal('show');
-            // console.log("Error!", error);
+            console.log("Error!", error);
           }
         );
   }

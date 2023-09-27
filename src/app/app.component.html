@@ -17,6 +17,16 @@
       <div id="nameHelp" class="form-text small text-danger" [class.d-none]="name.valid || name.untouched">Name is required</div>
     </div>
     <div class="mb-3">
+      <label for="phone-number" class="form-label">Phone Number</label>
+      <!-- <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" ngModel /> -->
+      <input type="text" class="form-control" id="phone-number" name="phoneNumber" aria-describedby="emailHelp" required pattern="^\d{10}$"
+        #phoneNumber="ngModel" [class.is-invalid]="phoneNumber.invalid && phoneNumber.touched" [(ngModel)]="employeeModel.phoneNumber" />
+      <div *ngIf="phoneNumber.errors && (phoneNumber.invalid && phoneNumber.touched)">
+        <div id="phone-number-help-req" *ngIf="phoneNumber.errors['required']" class="form-text small text-danger">Phone number is required</div>
+        <div id="phone-number-help-dig" *ngIf="phoneNumber.errors['pattern']" class="form-text small text-danger">Phone number should be exactly ten digits long</div>
+      </div>
+    </div>
+    <div class="mb-3">
       <label for="gender" class="form-label">Gender</label>
       <div id="genderHelp" class="form-text small text-danger" [class.d-none]="gender.valid || gender.untouched">Gender is required</div>
       <div class="form-check">
@@ -87,16 +97,18 @@
       <thead>
         <tr>
           <th>Name</th>
-          <th>gender</th>
-          <th>profile</th>
-          <th>docsCheck</th>
-          <th>city</th>
-          <th>pincode</th>
+          <th>Phone Number</th>
+          <th>Gender</th>
+          <th>Profile</th>
+          <th>DocsCheck</th>
+          <th>City</th>
+          <th>PIN Code</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let item of formData">
           <td>{{item.name|titlecase}}</td>
+          <td>{{item.phoneNumber}}</td>
           <td>{{item.gender|titlecase}}</td>
           <td>{{item.profile|titlecase}}</td>
           <td>{{item.docsCheck}}</td>
