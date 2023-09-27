@@ -64,7 +64,7 @@
       <div class="mb-3">
         <label for="house-number" class="form-label">House Number</label>
         <!-- <input type="text" class="form-control" id="house-number" name="house-number" aria-describedby="emailHelp" ngModel /> -->
-        <input type="text" class="form-control" id="house-number" name="house-number" aria-describedby="emailHelp" required
+        <input type="text" class="form-control" id="house-number" name="houseNumber" aria-describedby="emailHelp" required
           #houseNumber="ngModel" [class.is-invalid]="houseNumber.invalid && houseNumber.touched" [(ngModel)]="employeeModel.address.houseNumber" />
           <div id="house-numberHelp" class="form-text small text-danger" [class.d-none]="houseNumber.valid || houseNumber.untouched">House number is required</div>
       </div>
@@ -78,7 +78,7 @@
       <div class="mb-3">
         <label for="pin-code" class="form-label">PIN Code</label>
         <!-- <input type="text" class="form-control" id="pin-code" name="pin-code" aria-describedby="emailHelp" ngModel /> -->
-        <input type="text" class="form-control" id="pin-code" name="pin-code" aria-describedby="emailHelp" required
+        <input type="text" class="form-control" id="pin-code" name="pincode" aria-describedby="emailHelp" required
           #pincode="ngModel" pattern="^\d{6}$" [class.is-invalid]="pincode.invalid && pincode.touched" [(ngModel)]="employeeModel.address.pincode" />
           <!-- <div id="pin-code-Help" class="form-text small text-danger" [class.d-none]="pincode.valid || pincode.untouched">PIN code is required and should be six digits</div> -->
           <div *ngIf="pincode.errors && (pincode.invalid && pincode.touched)">
@@ -101,6 +101,7 @@
           <th>Gender</th>
           <th>Profile</th>
           <th>DocsCheck</th>
+          <th>House Number</th>
           <th>City</th>
           <th>PIN Code</th>
         </tr>
@@ -112,6 +113,7 @@
           <td>{{item.gender|titlecase}}</td>
           <td>{{item.profile|titlecase}}</td>
           <td>{{item.docsCheck}}</td>
+          <td>{{item.address.houseNumber}}</td>
           <td>{{item.address.city|titlecase}}</td>
           <td>{{item.address.pincode}}</td>
         </tr>
