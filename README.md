@@ -15,6 +15,10 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 ## Deployement
 Run `ng build --configuration "production"` to generate the production deployable dist code.
 
+## What angular says about deployement
+`ng build --configuration "production"`
+Be sure to include the slashes on either side of your project name as in `/your_project_name/`.
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
